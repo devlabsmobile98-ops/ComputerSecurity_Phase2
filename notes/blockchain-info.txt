@@ -1,7 +1,11 @@
 RPC URL:
 HTTP://127.0.0.1:7545
 
-Wallet Address:
+Wallet Name:
 Imported accounts
+
+Wallet Address:
+0x275Cd5e3d6E0e62432c8ce1F6f803C1608F9f50D
+
 Private Key:
 0x1959a42efe7859b3498e5642b1c15c19dfd0a43d9bffd02f329d4bb07a4205b8
