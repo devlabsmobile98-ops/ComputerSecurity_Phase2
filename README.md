@@ -17,8 +17,8 @@
 8. Exported contract ABI and recorded deployed contract address for backend integration.
 
 ## Important Outputs
-- **Contract Address:** .GITIGNORE 
-- **Test Wallet Address:** .GITIGNORE  
+- **Contract Address:** .gitignore
+- **Test Wallet Address:** .gitignore
 - **ABI saved in:** `contracts/abi.json`
 
 ## Key Security Feature Implemented
