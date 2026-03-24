@@ -17,7 +17,7 @@ const wallet = new ethers.Wallet(privateKey, provider);
 // 📍 NEW contract address (Nuha's deployed contract)
 const contractAddress = "0x3075e562680Fe38A60308f6c0933C3dC467b7BbE";
 
-// 📄 NEW ABI (updated for SecureVoting)
+// 📄 ABI
 const abi = [
   "function registerVoter(address _voter)",
   "function vote(bytes32 voteHash)",
@@ -35,15 +35,26 @@ app.get("/", (req, res) => {
   res.send("Backend working 🚀");
 });
 
-// ✅ register voter
 app.post("/register", async (req, res) => {
   try {
-    const tx = await contract.registerVoter(wallet.address);
+    const { voterAddress } = req.body;
+
+    if (!voterAddress) {
+      return res.status(400).json({ error: "Voter address required" });
+    }
+
+    const registered = await contract.isRegistered(voterAddress);
+
+    if (registered) {
+      return res.status(400).json({ error: "Voter already registered" });
+    }
+
+    const tx = await contract.registerVoter(voterAddress);
     await tx.wait();
 
     res.json({ success: true, message: "Voter registered" });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: "Registration failed" });
   }
 });
 
@@ -56,10 +67,20 @@ app.post("/vote", async (req, res) => {
       return res.status(400).json({ error: "Vote required" });
     }
 
+    const registered = await contract.isRegistered(wallet.address);
+    const voted = await contract.hasVoted(wallet.address);
+
+    if (!registered) {
+      return res.status(400).json({ error: "Not registered" });
+    }
+
+    if (voted) {
+      return res.status(400).json({ error: "Already voted" });
+    }
+
     // 🔐 SHA-256 → convert to bytes32
     const hash = crypto.createHash("sha256").update(vote).digest("hex");
-
-    const voteHash = "0x" + hash; // convert to bytes32
+    const voteHash = "0x" + hash;
 
     console.log("Vote:", vote);
     console.log("Hash:", voteHash);
@@ -75,7 +96,7 @@ app.post("/vote", async (req, res) => {
     });
 
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: "Vote failed" });
   }
 });
 
@@ -85,7 +106,7 @@ app.get("/totalVotes", async (req, res) => {
     const total = await contract.totalVotes();
     res.json({ total: total.toString() });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: "Could not fetch total votes" });
   }
 });
 
@@ -94,9 +115,3 @@ app.get("/totalVotes", async (req, res) => {
 app.listen(3000, () => {
   console.log("Server running on port 3000 🚀");
 });
-
-
-
-
-
-
