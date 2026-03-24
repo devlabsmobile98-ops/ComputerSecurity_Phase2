@@ -133,24 +133,24 @@ The system runs end-to-end successfully, demonstrating:
 
 ## Interface Features
 1. Voter Registration
-  - Users can register through the UI.
-  - Send a POST request to /register.
+    - Users can register through the UI.
+    - Send a POST request to /register.
 Output Example:
 Voter registered successfully ✅
 
 2. Vote Submission
-  - Users select a candidate (e.g., Alice, Bob, Charlie).
-  - Sends vote to backend via /vote.
+    - Users select a candidate (e.g., Alice, Bob, Charlie).
+    - Sends vote to backend via /vote.
 Output Example:
 You voted for Alice ✅
 
 3. Duplicate Vote Handling
-  - If user attempts to vote again, system blocks the action.
+    - If user attempts to vote again, system blocks the action.
 Output Example:
 Error: Already voted
 
 4. View Total Votes
-  - Retrieves vote count from blockchain.
+    - Retrieves vote count from blockchain.
 Output Example:
 Total votes: 1
 
