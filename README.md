@@ -110,4 +110,70 @@ The system runs end-to-end successfully, demonstrating:
 - Backend–smart contract integration
 
 # Part 3 - Voting Interface
+## Tools Used
+- HTML
+- CSS
+- JavaScript (Vanilla)
+- Fetch API
+- Browser (Chrome)
+
+## Tasks Completed
+1. Designed a simple web-based voting interface using HTML and CSS.
+2. Implemented frontend logic using JavaScript to communicate with backend APIs.
+3. Connected frontend to backend using HTTP requests (Fetch API).
+4. Created interactive UI components for:
+    - Voter registration
+    - Vote selection and submission
+    - Viewing total votes
+5. Displayed user-friendly messages instead of raw JSON responses.
+6. Handled error cases such as:
+    - Duplicate voting
+    - Unregistered voter attempts
+7. Successfully tested full frontend-to-backend interaction.
+
+## Interface Features
+1. Voter Registration
+  - Users can register through the UI.
+  - Send a POST request to /register.
+Output Example:
+Voter registered successfully ✅
+
+2. Vote Submission
+  - Users select a candidate (e.g., Alice, Bob, Charlie).
+  - Sends vote to backend via /vote.
+Output Example:
+You voted for Alice ✅
+
+3. Duplicate Vote Handling
+  - If user attempts to vote again, system blocks the action.
+Output Example:
+Error: Already voted
+
+4. View Total Votes
+  - Retrieves vote count from blockchain.
+Output Example:
+Total votes: 1
+
+## Frontend–Backend Interaction
+The frontend communicates with the backend using the Fetch API:
+- POST /register → Registers voter
+- POST /vote → Submits vote
+- GET /totalVotes → Retrieves vote count
+All blockchain interactions are handled by the backend, while the frontend focuses on user interaction and display.
+
+## User Experience Improvements
+To improve usability and clarity:
+- Replaced raw JSON responses with human-readable messages.
+- Added success indicators (✅) for positive actions.
+- Standardized error messages for clarity.
+- Ensured consistent UI styling for inputs, buttons, and output display.
+
+## Result
+The voting interface successfully provides a user-friendly way to interact with the blockchain system. It demonstrates:
+- Seamless frontend–backend communication
+- Real-time feedback to user actions
+- Clear and intuitive interaction flow
+This completes the full system pipeline:
+User Interface → Backend API → Smart Contract → Blockchain
+
 # Part 4 - Security & System Testing
