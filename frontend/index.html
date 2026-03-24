@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Voting System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Blockchain Secure Voting System</h1>
+    <p class="subtitle">Clean, secure, and transparent digital voting</p>
+
+    <h2>Register Voter</h2>
+    <input type="text" id="voterAddress" placeholder="Enter voter address" />
+    <button onclick="registerVoter()">Register</button>
+
+    <h2>Cast Vote</h2>
+    <select id="vote">
+      <option value="Alice">Alice</option>
+      <option value="Bob">Bob</option>
+      <option value="Charlie">Charlie</option>
+    </select>
+    <button onclick="castVote()">Vote</button>
+
+    <h2>Results</h2>
+    <button onclick="getTotalVotes()">Check Total Votes</button>
+
+    <pre id="output"></pre>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
