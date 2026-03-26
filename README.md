@@ -177,3 +177,55 @@ This completes the full system pipeline:
 User Interface → Backend API → Smart Contract → Blockchain
 
 # Part 4 - Security & System Testing
+## Tools Used
+- Ganache  
+- MetaMask  
+- Backend logs  
+- Browser  
+
+---
+
+## Testing
+
+### Valid Vote
+{ "success": true, "txHash": "0x..." }  
+✔️ Accepted  
+
+---
+
+### Duplicate Vote
+{ "success": false, "error": "Already voted" }  
+✔️ Rejected  
+
+---
+
+### Unauthorized
+{ "success": false, "error": "Voter not registered" }  
+✔️ Blocked  
+
+---
+
+## Security Analysis
+
+### Hashing
+- SHA-256 protects vote data  
+
+### Digital Signatures
+- Transactions signed via MetaMask  
+
+### Immutability
+- Blockchain data cannot change  
+
+### Authentication
+- Only registered users vote  
+
+### Double Vote Prevention
+mapping(address => bool) public voted;
+
+---
+
+## Final Result
+✔️ Secure  
+✔️ No duplicate votes  
+✔️ No unauthorized access  
+✔️ Full system works end-to-end
