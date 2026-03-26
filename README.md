@@ -177,55 +177,50 @@ This completes the full system pipeline:
 User Interface → Backend API → Smart Contract → Blockchain
 
 # Part 4 - Security & System Testing
-## Tools Used
-- Ganache  
-- MetaMask  
-- Backend logs  
-- Browser  
 
----
-
-## Testing
-
-### Valid Vote
-{ "success": true, "txHash": "0x..." }  
-✔️ Accepted  
-
----
-
-### Duplicate Vote
-{ "success": false, "error": "Already voted" }  
-✔️ Rejected  
-
----
-
-### Unauthorized
-{ "success": false, "error": "Voter not registered" }  
-✔️ Blocked  
-
----
-
-## Security Analysis
-
-### Hashing
-- SHA-256 protects vote data  
-
-### Digital Signatures
-- Transactions signed via MetaMask  
-
-### Immutability
-- Blockchain data cannot change  
-
-### Authentication
-- Only registered users vote  
-
-### Double Vote Prevention
+Tools Used
+Ganache (Local Ethereum Blockchain)
+MetaMask (Wallet and transaction signing)
+Node.js Backend Logs
+Browser (Frontend interaction)
+Solidity Smart Contract Validation
+Tasks Completed
+Performed comprehensive testing of the system under multiple scenarios including valid voting, duplicate voting attempts, and unauthorized access.
+Verified that the smart contract correctly enforces the rule of one vote per address.
+Tested backend functionality to ensure vote data is hashed using SHA-256 before being sent to the blockchain.
+Observed blockchain transactions and logs to confirm successful execution and rejection of invalid operations.
+Analyzed key security mechanisms such as hashing, digital signatures, authentication, and blockchain immutability.
+Documented system behavior using outputs and test results.
+Testing Scenarios & Results
+1. Valid Vote Submission
+A registered voter successfully submitted a vote through the frontend interface. The backend processed the request, applied SHA-256 hashing to the vote, and sent it to the smart contract. The transaction was successfully mined on the blockchain, and a transaction hash was generated.
+Output Example:
+{ "success": true, "txHash": "0x..." }
+✔️ Result: The system correctly accepts and securely records valid votes.
+2. Duplicate Vote Attempt
+A second vote was attempted using the same wallet address. The smart contract detected that the address had already voted and rejected the transaction.
+Output Example:
+{ "success": false, "error": "Already voted" }
+✔️ Result: Double voting is successfully prevented, ensuring fairness in the system.
+3. Unauthorized Voter Attempt
+An attempt was made to vote without prior registration. The system rejected the request and did not process the transaction.
+Output Example:
+{ "success": false, "error": "Voter not registered" }
+✔️ Result: Unauthorized users are blocked from participating in the voting process.
+Security System Analysis
+Hashing (SHA-256)
+All votes are converted into a fixed-length hash using the SHA-256 algorithm before being stored on the blockchain. This ensures that the original vote data is never exposed. Hashing also guarantees data integrity, as any change in input results in a completely different hash.
+Digital Signatures
+Each transaction is digitally signed using the voter’s private key through MetaMask. This ensures the authenticity of the voter, prevents impersonation, and provides non-repudiation.
+Blockchain Immutability
+Once a vote is recorded on the blockchain, it becomes permanent and cannot be modified or deleted. This ensures transparency and protects the system from tampering.
+Authentication
+The system allows only registered wallet addresses to vote. Any attempt by an unregistered user is rejected.
+Double Vote Prevention
 mapping(address => bool) public voted;
-
----
-
-## Final Result
-✔️ Secure  
-✔️ No duplicate votes  
-✔️ No unauthorized access  
-✔️ Full system works end-to-end
+This ensures each voter can vote only once.
+End-to-End Security Flow
+Frontend → Backend → Hashing → Smart Contract → Blockchain
+Result
+The system successfully demonstrates a secure blockchain-based voting mechanism. It prevents duplicate voting, blocks unauthorized users, ensures vote integrity through hashing, and uses digital signatures for secure transactions. The blockchain guarantees immutability, making the system transparent and tamper-proof.
+✔️ Overall, the system meets all functional and security requirements.
