@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vote Guard - Voter Dashboard</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div class="page">
+    <div class="shell">
+      <nav class="navbar">
+        <div class="brand">
+          <img class="brand-logo" src="./assets/vote_guard_logo.png" alt="Vote Guard logo" />
+          <div class="brand-text">
+            <h2>Vote Guard</h2>
+            <p>Voter dashboard</p>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a class="nav-link" href="cast-vote.html">Cast Vote</a>
+          <span id="navSession"></span>
+        </div>
+      </nav>
+
+      <section class="grid-3">
+        <div class="stat">
+          <span class="stat-label">Role</span>
+          <span class="stat-value" id="roleValue">VOTER</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Registered</span>
+          <span class="stat-value" id="registeredValue">Checking...</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Vote Status</span>
+          <span class="stat-value" id="votedValue">Checking...</span>
+        </div>
+      </section>
+
+      <div style="height:18px;"></div>
+
+      <section class="card stack">
+        <div>
+          <h1 class="section-title">Your Voting Status</h1>
+          <p class="section-desc">Check whether your wallet is registered and whether you already voted.</p>
+        </div>
+
+        <div id="statusOutput" class="output info">Loading voter status...</div>
+
+        <div class="button-row">
+          <button class="secondary-btn" id="refreshStatusBtn">Refresh Status</button>
+          <a class="button primary-btn" href="cast-vote.html">Go to Cast Vote</a>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="./js/common.js"></script>
+  <script src="./js/voter-dashboard.js"></script>
+</body>
+</html>

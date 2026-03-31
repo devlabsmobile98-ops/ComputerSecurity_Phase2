@@ -2,6 +2,8 @@
 pragma solidity ^0.8.0;
 
 contract SecureVoting {
+    address public admin;
+
     struct Voter {
         bool registered;
         bool voted;
@@ -13,8 +15,19 @@ contract SecureVoting {
     event VoterRegistered(address voter);
     event VoteSubmitted(address voter, bytes32 voteHash);
 
-    function registerVoter(address _voter) public {
+    modifier onlyAdmin() {
+        require(msg.sender == admin, "Only admin can perform this action");
+        _;
+    }
+
+    constructor() {
+        admin = msg.sender;
+    }
+
+    function registerVoter(address _voter) public onlyAdmin {
+        require(_voter != address(0), "Invalid voter address");
         require(!voters[_voter].registered, "Voter already registered");
+
         voters[_voter] = Voter(true, false);
         emit VoterRegistered(_voter);
     }

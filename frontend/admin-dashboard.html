@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vote Guard - Admin Dashboard</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div class="page">
+    <div class="shell">
+      <nav class="navbar">
+        <div class="brand">
+          <img class="brand-logo" src="./assets/vote_guard_logo.png" alt="Vote Guard logo" />
+          <div class="brand-text">
+            <h2>Vote Guard</h2>
+            <p>Administrative monitoring</p>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a class="nav-link" href="register.html">Register Voter</a>
+          <a class="nav-link" href="results.html">Results</a>
+          <span id="navSession"></span>
+        </div>
+      </nav>
+
+      <section class="grid-3">
+        <div class="stat">
+          <span class="stat-label">Total Votes</span>
+          <span class="stat-value" id="totalVotes">Loading...</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Registered Voters</span>
+          <span class="stat-value" id="totalRegistered">Loading...</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Voter Records</span>
+          <span class="stat-value" id="totalVoters">Loading...</span>
+        </div>
+      </section>
+
+      <div style="height:18px;"></div>
+
+      <section class="card stack">
+        <div>
+          <h1 class="section-title">Admin Overview</h1>
+          <p class="section-desc">Monitor election status without exposing voter identities.</p>
+        </div>
+
+        <div class="button-row">
+          <button class="secondary-btn" id="refreshOverviewBtn">Refresh Overview</button>
+          <a class="button primary-btn" href="register.html">Open Registration</a>
+        </div>
+
+        <div id="overviewOutput" class="output info">Loading admin overview...</div>
+      </section>
+    </div>
+  </div>
+
+  <script src="./js/common.js"></script>
+  <script src="./js/admin-dashboard.js"></script>
+</body>
+</html>

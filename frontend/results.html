@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vote Guard - Results</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div class="page">
+    <div class="shell center-card">
+      <nav class="navbar">
+        <div class="brand">
+          <img class="brand-logo" src="./assets/vote_guard_logo.png" alt="Vote Guard logo" />
+          <div class="brand-text">
+            <h2>Vote Guard</h2>
+            <p>Total vote monitoring</p>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a class="nav-link" href="admin-dashboard.html">Admin Dashboard</a>
+          <span id="navSession"></span>
+        </div>
+      </nav>
+
+      <section class="card stack">
+        <div>
+          <h1 class="section-title">Election Results</h1>
+          <p class="section-desc">Authorized admins can view the total number of recorded votes.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="stat">
+            <span class="stat-label">Recorded Votes</span>
+            <span class="stat-value" id="resultsTotal">Loading...</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Visibility</span>
+            <span class="stat-value">Admin Only</span>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button class="secondary-btn" id="refreshResultsBtn">Refresh Total Votes</button>
+        </div>
+
+        <div id="resultsOutput" class="output info">Waiting for admin request...</div>
+      </section>
+    </div>
+  </div>
+
+  <script src="./js/common.js"></script>
+  <script src="./js/results.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vote Guard - Login</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div class="page">
+    <div class="shell center-card">
+      <nav class="navbar">
+        <div class="brand">
+          <img class="brand-logo" src="./assets/vote_guard_logo.png" alt="Vote Guard logo" />
+          <div class="brand-text">
+            <h2>Vote Guard</h2>
+            <p>Role-based access</p>
+          </div>
+        </div>
+        <div class="nav-links" id="navSession"></div>
+      </nav>
+
+      <section class="card stack">
+        <div>
+          <h1 class="section-title">Login</h1>
+          <p class="section-desc">Sign in as either a voter or an administrator.</p>
+        </div>
+
+        <div>
+          <label class="field-label" for="role">Role</label>
+          <select id="role">
+            <option value="voter">Voter</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+
+        <div id="voterFields">
+          <label class="field-label" for="voterAddress">Ganache Voter Address</label>
+          <input id="voterAddress" type="text" placeholder="0x..." />
+        </div>
+
+        <div id="adminFields" style="display:none;">
+          <label class="field-label" for="adminCode">Admin Code</label>
+          <input id="adminCode" type="password" placeholder="Enter admin code" />
+        </div>
+
+        <div class="button-row">
+          <button class="primary-btn" id="loginBtn">Login</button>
+          <a class="button ghost-btn" href="index.html">Back Home</a>
+        </div>
+
+        <div id="loginOutput" class="output info">Choose a role and sign in.</div>
+      </section>
+    </div>
+  </div>
+
+  <script src="./js/common.js"></script>
+  <script src="./js/login.js"></script>
+</body>
+</html>

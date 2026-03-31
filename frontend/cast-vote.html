@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vote Guard - Cast Vote</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div class="page">
+    <div class="shell center-card">
+      <nav class="navbar">
+        <div class="brand">
+          <img class="brand-logo" src="./assets/vote_guard_logo.png" alt="Vote Guard logo" />
+          <div class="brand-text">
+            <h2>Vote Guard</h2>
+            <p>Secure vote submission</p>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a class="nav-link" href="voter-dashboard.html">Dashboard</a>
+          <span id="navSession"></span>
+        </div>
+      </nav>
+
+      <section class="card stack">
+        <div>
+          <h1 class="section-title">Cast Vote</h1>
+          <p class="section-desc">Your wallet signs and submits the transaction. The private key never leaves MetaMask.</p>
+        </div>
+
+        <div>
+          <label class="field-label" for="vote">Candidate</label>
+          <select id="vote">
+            <option value="Alice">Alice</option>
+            <option value="Bob">Bob</option>
+            <option value="Charlie">Charlie</option>
+          </select>
+        </div>
+
+        <div class="button-row">
+          <button class="primary-btn" id="voteBtn">Submit Vote</button>
+          <button class="ghost-btn" id="statusBtn" type="button">Refresh Status</button>
+        </div>
+
+        <div id="sessionOutput" class="output info">Checking voter status...</div>
+        <div id="voteOutput" class="output info">Ready to submit your vote.</div>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+  <script src="./js/common.js"></script>
+  <script src="./js/cast-vote.js"></script>
+</body>
+</html>

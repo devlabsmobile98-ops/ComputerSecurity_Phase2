@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vote Guard - Register Voter</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div class="page">
+    <div class="shell center-card">
+      <nav class="navbar">
+        <div class="brand">
+          <img class="brand-logo" src="./assets/vote_guard_logo.png" alt="Vote Guard logo" />
+          <div class="brand-text">
+            <h2>Vote Guard</h2>
+            <p>Admin registration portal</p>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a class="nav-link" href="admin-dashboard.html">Dashboard</a>
+          <span id="navSession"></span>
+        </div>
+      </nav>
+
+      <section class="card stack">
+        <div>
+          <h1 class="section-title">Register Voter</h1>
+          <p class="section-desc">Register a verified voter wallet on-chain and in the secure registry.</p>
+        </div>
+
+        <div class="stat">
+          <span class="stat-label">Admin Wallet</span>
+          <span class="stat-value" id="adminAddressText">Loading...</span>
+        </div>
+
+        <div>
+          <label class="field-label" for="voterAddress">Voter Address</label>
+          <input id="voterAddress" type="text" placeholder="0x..." />
+        </div>
+
+        <div>
+          <label class="field-label" for="region">Region</label>
+          <input id="region" type="text" placeholder="e.g. Durham" />
+        </div>
+
+        <div class="button-row">
+          <button class="primary-btn" id="registerBtn">Register Voter</button>
+        </div>
+
+        <div id="registerOutput" class="output info">Ready for admin registration.</div>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+  <script src="./js/common.js"></script>
+  <script src="./js/register.js"></script>
+</body>
+</html>

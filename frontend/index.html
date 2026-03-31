@@ -3,32 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Secure Voting System</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Vote Guard</title>
+  <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Blockchain Secure Voting System</h1>
-    <p class="subtitle">Clean, secure, and transparent digital voting</p>
+  <div class="page">
+    <div class="shell">
+      <nav class="navbar">
+        <div class="brand">
+          <img class="brand-logo" src="./assets/vote_guard_logo.png" alt="Vote Guard logo" />
+          <div class="brand-text">
+            <h2>Vote Guard</h2>
+            <p>Blockchain-based secure voting platform</p>
+          </div>
+        </div>
+        <div class="nav-links" id="navSession"></div>
+      </nav>
 
-    <h2>Register Voter</h2>
-    <input type="text" id="voterAddress" placeholder="Enter voter address" />
-    <button onclick="registerVoter()">Register</button>
+      <section class="hero-card">
+        <div>
+          <h1 class="hero-title">Transparent. Secure. Single-Vote Protected.</h1>
+          <p class="subtitle">
+            Vote Guard is a blockchain-based secure voting prototype with hashed ballot submission,
+            one-vote enforcement, voter role separation, and admin monitoring.
+          </p>
 
-    <h2>Cast Vote</h2>
-    <select id="vote">
-      <option value="Alice">Alice</option>
-      <option value="Bob">Bob</option>
-      <option value="Charlie">Charlie</option>
-    </select>
-    <button onclick="castVote()">Vote</button>
+          <div class="pill-row">
+            <span class="pill">Secure Registration</span>
+            <span class="pill">RBAC</span>
+            <span class="pill">Hashed Ballots</span>
+            <span class="pill">Admin Monitoring</span>
+          </div>
 
-    <h2>Results</h2>
-    <button onclick="getTotalVotes()">Check Total Votes</button>
+          <div class="button-row" style="margin-top: 20px;">
+            <a class="button primary-btn" href="login.html">Login</a>
+            <a class="button secondary-btn" href="admin-dashboard.html">Admin Dashboard</a>
+          </div>
+        </div>
 
-    <pre id="output"></pre>
+        <div class="stack">
+          <div class="stat">
+            <span class="stat-label">Security Goal</span>
+            <span class="stat-value">Tamper-resistant vote recording</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Blockchain</span>
+            <span class="stat-value">Private Ethereum / Ganache</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Roles</span>
+            <span class="stat-value">Admin + Voter</span>
+          </div>
+        </div>
+      </section>
+
+      <p class="footer-note">Vote Guard prototype for your secure voting project.</p>
+    </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="./js/common.js"></script>
 </body>
 </html>
