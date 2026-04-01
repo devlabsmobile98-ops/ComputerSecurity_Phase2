@@ -1,5 +1,5 @@
 const API_BASE = "http://127.0.0.1:3000";
-const CONTRACT_ADDRESS = "0x5d1a7D5A8DB1bf5d56c25aC8540e82252C7Cf82C";
+const CONTRACT_ADDRESS = "0x4D75fb6b7FB47B5BFC01016A4aBa3D3ac7a33d2c";
 
 async function getContractAbi() {
   const res = await fetch("./contracts/abi.json");

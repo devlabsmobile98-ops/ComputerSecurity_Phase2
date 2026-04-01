@@ -3,17 +3,21 @@ pragma solidity ^0.8.0;
 
 contract SecureVoting {
     address public admin;
+    bool public electionOpen;
 
     struct Voter {
         bool registered;
         bool voted;
+        string region;
     }
 
     mapping(address => Voter) public voters;
     bytes32[] public votes;
 
-    event VoterRegistered(address voter);
-    event VoteSubmitted(address voter, bytes32 voteHash);
+    event VoterRegistered(address indexed voter, string region);
+    event VoteSubmitted(address indexed voter, bytes32 voteHash);
+    event ElectionOpened();
+    event ElectionClosed();
 
     modifier onlyAdmin() {
         require(msg.sender == admin, "Only admin can perform this action");
@@ -22,17 +26,36 @@ contract SecureVoting {
 
     constructor() {
         admin = msg.sender;
+        electionOpen = true;
+        emit ElectionOpened();
     }
 
-    function registerVoter(address _voter) public onlyAdmin {
+    function openElection() public onlyAdmin {
+        electionOpen = true;
+        emit ElectionOpened();
+    }
+
+    function closeElection() public onlyAdmin {
+        electionOpen = false;
+        emit ElectionClosed();
+    }
+
+    function registerVoter(address _voter, string memory _region) public onlyAdmin {
         require(_voter != address(0), "Invalid voter address");
+        require(bytes(_region).length > 0, "Region is required");
         require(!voters[_voter].registered, "Voter already registered");
 
-        voters[_voter] = Voter(true, false);
-        emit VoterRegistered(_voter);
+        voters[_voter] = Voter({
+            registered: true,
+            voted: false,
+            region: _region
+        });
+
+        emit VoterRegistered(_voter, _region);
     }
 
     function vote(bytes32 voteHash) public {
+        require(electionOpen, "Election is closed");
         require(voters[msg.sender].registered, "Not registered");
         require(!voters[msg.sender].voted, "Already voted");
 
@@ -52,5 +75,9 @@ contract SecureVoting {
 
     function hasVoted(address _voter) public view returns (bool) {
         return voters[_voter].voted;
+    }
+
+    function getRegion(address _voter) public view returns (string memory) {
+        return voters[_voter].region;
     }
 }
