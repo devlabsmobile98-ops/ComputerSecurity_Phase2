@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vote Guard - Admin Dashboard</title>
+  <title>Vote Guard — Admin Dashboard</title>
   <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
   <div class="page">
     <div class="shell">
+
       <nav class="navbar">
         <div class="brand">
           <img class="brand-logo" src="./assets/vote_guard_logo.png" alt="Vote Guard logo" />
@@ -18,8 +19,8 @@
           </div>
         </div>
         <div class="nav-links">
-          <a class="nav-link" href="register.html">Register Voter</a>
-          <a class="nav-link" href="results.html">Results</a>
+          <a class="nav-link" href="register.html">➕ Register Voter</a>
+          <a class="nav-link" href="results.html">📊 Results</a>
           <span id="navSession"></span>
         </div>
       </nav>
@@ -27,33 +28,41 @@
       <section class="grid-3">
         <div class="stat">
           <span class="stat-label">Total Votes</span>
-          <span class="stat-value" id="totalVotes">Loading...</span>
+          <span class="stat-value" id="totalVotes">—</span>
         </div>
         <div class="stat">
           <span class="stat-label">Registered Voters</span>
-          <span class="stat-value" id="totalRegistered">Loading...</span>
+          <span class="stat-value" id="totalRegistered">—</span>
         </div>
         <div class="stat">
-          <span class="stat-label">Voter Records</span>
-          <span class="stat-value" id="totalVoters">Loading...</span>
+          <span class="stat-label">Election Status</span>
+          <span class="stat-value" id="electionStatus">—</span>
         </div>
       </section>
 
-      <div style="height:18px;"></div>
+      <div class="spacer"></div>
 
       <section class="card stack">
-        <div>
+        <div class="section-header">
           <h1 class="section-title">Admin Overview</h1>
-          <p class="section-desc">Monitor election status without exposing voter identities.</p>
+          <p class="section-desc">Monitor election status, registered voters, and manage the election workflow.</p>
         </div>
 
         <div class="button-row">
-          <button class="secondary-btn" id="refreshOverviewBtn">Refresh Overview</button>
-          <a class="button primary-btn" href="register.html">Open Registration</a>
+          <button class="ghost-btn" id="refreshOverviewBtn">↻ Refresh Overview</button>
+          <a class="button secondary-btn" href="register.html">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Register a Voter
+          </a>
+          <a class="button danger-btn" href="results.html">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            Close Election &amp; Results
+          </a>
         </div>
 
-        <div id="overviewOutput" class="output info">Loading admin overview...</div>
+        <div id="overviewOutput" class="output info">Loading admin overview…</div>
       </section>
+
     </div>
   </div>
 

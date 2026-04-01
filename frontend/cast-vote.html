@@ -3,12 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vote Guard - Cast Vote</title>
+  <title>Vote Guard — Cast Vote</title>
   <link rel="stylesheet" href="./css/style.css" />
+  <style>
+    .candidate-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .candidate-card {
+      border: 1.5px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 20px 14px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      background: var(--white);
+    }
+
+    .candidate-card:hover {
+      border-color: var(--lime-dark);
+      background: var(--lime-pale);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .candidate-card.selected {
+      border-color: var(--lime-dark);
+      background: var(--lime-pale);
+      box-shadow: 0 0 0 3px rgba(168, 176, 0, 0.2);
+    }
+
+    .candidate-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--charcoal);
+      color: var(--lime);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+    }
+
+    .candidate-card.selected .candidate-avatar {
+      background: var(--lime-dark);
+      color: var(--charcoal);
+    }
+
+    .candidate-name {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--charcoal);
+    }
+
+    /* hidden native select for JS compatibility */
+    #vote { display: none; }
+
+    @media (max-width: 500px) {
+      .candidate-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
   <div class="page">
     <div class="shell center-card">
+
       <nav class="navbar">
         <div class="brand">
           <img class="brand-logo" src="./assets/vote_guard_logo.png" alt="Vote Guard logo" />
@@ -18,39 +83,67 @@
           </div>
         </div>
         <div class="nav-links">
-          <a class="nav-link" href="voter-dashboard.html">Dashboard</a>
+          <a class="nav-link" href="voter-dashboard.html">🏡 Dashboard</a>
           <span id="navSession"></span>
         </div>
       </nav>
 
       <section class="card stack">
-        <div>
-          <h1 class="section-title">Cast Vote</h1>
-          <p class="section-desc">Your wallet signs and submits the transaction. The private key never leaves MetaMask.</p>
+        <div class="section-header">
+          <h1 class="section-title">Cast Your Vote</h1>
+          <p class="section-desc">Select a candidate below. Your wallet signs and submits the transaction — your private key never leaves MetaMask.</p>
         </div>
 
+        <div id="sessionOutput" class="output info">Checking voter status…</div>
+
         <div>
-          <label class="field-label" for="vote">Candidate</label>
+          <label class="field-label">Select a Candidate</label>
+          <!-- Hidden native select keeps JS compatibility -->
           <select id="vote">
             <option value="Alice">Alice</option>
             <option value="Bob">Bob</option>
             <option value="Charlie">Charlie</option>
           </select>
+
+          <div class="candidate-grid" id="candidateGrid">
+            <div class="candidate-card selected" data-value="Alice" onclick="selectCandidate('Alice', this)">
+              <div class="candidate-avatar">A</div>
+              <div class="candidate-name">Alice</div>
+            </div>
+            <div class="candidate-card" data-value="Bob" onclick="selectCandidate('Bob', this)">
+              <div class="candidate-avatar">B</div>
+              <div class="candidate-name">Bob</div>
+            </div>
+            <div class="candidate-card" data-value="Charlie" onclick="selectCandidate('Charlie', this)">
+              <div class="candidate-avatar">C</div>
+              <div class="candidate-name">Charlie</div>
+            </div>
+          </div>
         </div>
 
         <div class="button-row">
-          <button class="primary-btn" id="voteBtn">Submit Vote</button>
-          <button class="ghost-btn" id="statusBtn" type="button">Refresh Status</button>
+          <button class="primary-btn" id="voteBtn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Submit Vote
+          </button>
+          <button class="ghost-btn" id="statusBtn" type="button">↻ Refresh Status</button>
         </div>
 
-        <div id="sessionOutput" class="output info">Checking voter status...</div>
         <div id="voteOutput" class="output info">Ready to submit your vote.</div>
       </section>
+
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
   <script src="./js/common.js"></script>
+  <script>
+    function selectCandidate(value, el) {
+      document.getElementById('vote').value = value;
+      document.querySelectorAll('.candidate-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+  </script>
   <script src="./js/cast-vote.js"></script>
 </body>
 </html>

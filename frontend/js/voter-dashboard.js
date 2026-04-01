@@ -10,7 +10,7 @@ async function loadStatus() {
 
     document.getElementById("roleValue").textContent = "VOTER";
     document.getElementById("registeredValue").textContent = data.registered ? "YES" : "NO";
-    document.getElementById("votedValue").textContent = data.voted ? "ALREADY VOTED" : "NOT YET";
+    document.getElementById("votedValue").textContent = data.voted ? "VOTED ✓" : "NOT YET";
 
     setOutput(
       "statusOutput",

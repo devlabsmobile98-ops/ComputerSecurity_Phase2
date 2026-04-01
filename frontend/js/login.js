@@ -1,11 +1,11 @@
-const roleSelect = document.getElementById("role");
+// role is now read from the hidden input (toggled by the card UI in login.html)
 const loginBtn = document.getElementById("loginBtn");
 
 loginBtn.addEventListener("click", async () => {
   try {
-    const role = roleSelect.value;
+    const role = document.getElementById("role").value;
 
-    setOutput("loginOutput", "Connecting wallet...", "loading");
+    setOutput("loginOutput", "Connecting wallet…", "loading");
 
     const walletAddress = await connectWallet();
 
@@ -14,7 +14,7 @@ loginBtn.addEventListener("click", async () => {
       body: JSON.stringify({ walletAddress, role })
     });
 
-    setOutput("loginOutput", "Please sign the login message in MetaMask...", "loading");
+    setOutput("loginOutput", "Please sign the login message in MetaMask…", "loading");
 
     const signature = await window.ethereum.request({
       method: "personal_sign",
@@ -31,7 +31,7 @@ loginBtn.addEventListener("click", async () => {
     });
 
     setAuth(verifyData.token, verifyData.session);
-    setOutput("loginOutput", "Login successful.", "success");
+    setOutput("loginOutput", "Login successful! Redirecting…", "success");
 
     if (verifyData.session.role === "admin") {
       window.location.href = "admin-dashboard.html";

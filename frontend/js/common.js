@@ -97,7 +97,7 @@ function updateNavSession() {
   }
 
   navSession.innerHTML = `
-    <span class="nav-link">${session.role.toUpperCase()} • ${session.address.slice(0, 10)}...</span>
+    <span class="nav-link">${session.role.toUpperCase()} · ${session.address.slice(0, 10)}…</span>
     <button class="nav-link" onclick="logout()">Logout</button>
   `;
 }

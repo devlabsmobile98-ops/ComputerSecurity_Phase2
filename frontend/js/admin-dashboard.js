@@ -10,11 +10,11 @@ async function loadOverview() {
 
     document.getElementById("totalVotes").textContent = data.totalVotes;
     document.getElementById("totalRegistered").textContent = data.totalRegistered;
-    document.getElementById("totalVoters").textContent = data.totalVoters;
+    document.getElementById("electionStatus").textContent = data.electionOpen ? "OPEN" : "CLOSED";
 
     setOutput(
       "overviewOutput",
-      `Total votes: ${data.totalVotes}\nTotal registered voters: ${data.totalRegistered}\nTotal voter records: ${data.totalVoters}`,
+      `Total votes: ${data.totalVotes}\nRegistered voters: ${data.totalRegistered}\nTotal voter records: ${data.totalVoters}\nElection open: ${data.electionOpen}`,
       "success"
     );
   } catch (err) {

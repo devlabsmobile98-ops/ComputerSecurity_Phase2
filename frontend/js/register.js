@@ -12,7 +12,7 @@ document.getElementById("registerBtn").addEventListener("click", async () => {
       return;
     }
 
-    setOutput("registerOutput", "Connecting MetaMask...", "loading");
+    setOutput("registerOutput", "Connecting MetaMask…", "loading");
 
     if (!window.ethereum) {
       throw new Error("MetaMask is required");
@@ -23,7 +23,7 @@ document.getElementById("registerBtn").addEventListener("click", async () => {
     const abi = await getContractAbi();
     const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
 
-    setOutput("registerOutput", "Please confirm voter registration in MetaMask...", "loading");
+    setOutput("registerOutput", "Please confirm voter registration in MetaMask…", "loading");
 
     const tx = await contract.registerVoter(voterAddress, region);
     const receipt = await tx.wait();
@@ -39,7 +39,7 @@ document.getElementById("registerBtn").addEventListener("click", async () => {
 
     setOutput(
       "registerOutput",
-      `Registered: ${data.voter.walletAddress}\nRegion: ${data.voter.region}\nStatus: ${data.voter.isRegistered ? "REGISTERED" : "NOT REGISTERED"}`,
+      `Registered: ${data.voter.walletAddress}\nRegion: ${data.voter.region}\nStatus: ${data.voter.isRegistered ? "REGISTERED ✓" : "NOT REGISTERED"}`,
       "success"
     );
   } catch (err) {

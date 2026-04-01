@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema(
     },
     region: {
       type: String,
-      default: "default"
+      default: "Ottawa"
     },
     isRegistered: {
       type: Boolean,

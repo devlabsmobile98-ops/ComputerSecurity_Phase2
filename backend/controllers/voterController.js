@@ -13,7 +13,7 @@ exports.getStatus = async (req, res) => {
       walletAddress,
       registered: status.registered,
       voted: status.voted,
-      region: user?.region || status.region || "default"
+      region: user?.region || status.region || "Ottawa"
     });
   } catch (error) {
     res.status(500).json({ error: error.message || "Failed to load voter status" });

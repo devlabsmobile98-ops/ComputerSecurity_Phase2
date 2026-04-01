@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vote Guard - Login</title>
+  <title>Vote Guard — Login</title>
   <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
   <div class="page">
     <div class="shell center-card">
+
       <nav class="navbar">
         <div class="brand">
           <img class="brand-logo" src="./assets/vote_guard_logo.png" alt="Vote Guard logo" />
@@ -17,44 +18,59 @@
             <p>Role-based access</p>
           </div>
         </div>
-        <div class="nav-links" id="navSession"></div>
+        <div class="nav-links">
+          <a class="nav-link" href="index.html">Home</a>
+          <span id="navSession"></span>
+        </div>
       </nav>
 
       <section class="card stack">
-        <div>
-          <h1 class="section-title">Login</h1>
-          <p class="section-desc">Sign in as either a voter or an administrator.</p>
+        <div class="section-header">
+          <h1 class="section-title">Sign In</h1>
+          <p class="section-desc">Connect your MetaMask wallet and sign in as a voter or administrator.</p>
+        </div>
+
+        <div class="info-box">
+          🦊 Make sure MetaMask is installed and connected to the correct Ganache network before continuing.
         </div>
 
         <div>
-          <label class="field-label" for="role">Role</label>
-          <select id="role">
-            <option value="voter">Voter</option>
-            <option value="admin">Admin</option>
-          </select>
-        </div>
-
-        <div id="voterFields">
-          <label class="field-label" for="voterAddress">Ganache Voter Address</label>
-          <input id="voterAddress" type="text" placeholder="0x..." />
-        </div>
-
-        <div id="adminFields" style="display:none;">
-          <label class="field-label" for="adminCode">Admin Code</label>
-          <input id="adminCode" type="password" placeholder="Enter admin code" />
+          <label class="field-label">I am signing in as a…</label>
+          <div class="action-grid" style="margin-top: 4px;">
+            <div class="action-card active" id="roleVoter" onclick="selectRole('voter')">
+              <div class="action-icon">🗳️</div>
+              <span class="action-card-label">Voter</span>
+            </div>
+            <div class="action-card" id="roleAdmin" onclick="selectRole('admin')">
+              <div class="action-icon">🔑</div>
+              <span class="action-card-label">Admin</span>
+            </div>
+          </div>
+          <input type="hidden" id="role" value="voter" />
         </div>
 
         <div class="button-row">
-          <button class="primary-btn" id="loginBtn">Login</button>
-          <a class="button ghost-btn" href="index.html">Back Home</a>
+          <button class="primary-btn" id="loginBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Connect Wallet &amp; Sign In
+          </button>
+          <a class="button ghost-btn" href="index.html">Cancel</a>
         </div>
 
-        <div id="loginOutput" class="output info">Choose a role and sign in.</div>
+        <div id="loginOutput" class="output info">Choose a role above, then click Connect Wallet &amp; Sign In.</div>
       </section>
+
     </div>
   </div>
 
   <script src="./js/common.js"></script>
+  <script>
+    function selectRole(role) {
+      document.getElementById('role').value = role;
+      document.getElementById('roleVoter').classList.toggle('active', role === 'voter');
+      document.getElementById('roleAdmin').classList.toggle('active', role === 'admin');
+    }
+  </script>
   <script src="./js/login.js"></script>
 </body>
 </html>

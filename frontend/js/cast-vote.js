@@ -25,7 +25,7 @@ document.getElementById("voteBtn").addEventListener("click", async () => {
       return;
     }
 
-    setOutput("voteOutput", "Preparing vote...", "loading");
+    setOutput("voteOutput", "Preparing vote…", "loading");
 
     if (!window.ethereum) {
       throw new Error("MetaMask is required");
@@ -40,7 +40,7 @@ document.getElementById("voteBtn").addEventListener("click", async () => {
     const abi = await getContractAbi();
     const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
 
-    setOutput("voteOutput", "Please confirm the vote transaction in MetaMask...", "loading");
+    setOutput("voteOutput", "Please confirm the vote transaction in MetaMask…", "loading");
 
     const tx = await contract.vote(voteHash);
     const receipt = await tx.wait();
@@ -55,7 +55,7 @@ document.getElementById("voteBtn").addEventListener("click", async () => {
 
     setOutput(
       "voteOutput",
-      `Vote submitted successfully.\nVote Hash: ${voteHash}\nTransaction: ${receipt.hash}`,
+      `Vote submitted successfully ✓\nVote Hash: ${voteHash}\nTransaction: ${receipt.hash}`,
       "success"
     );
 
